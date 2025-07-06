@@ -42,7 +42,7 @@ jobs:
         run: |
           #python train.py
           echo "working dir: $(pwd)"
-          #echo hello > mnist_classifier.pth
+          echo world > mnist_classifier.pth
           tree
 
       - name: Validation
