@@ -38,9 +38,9 @@ jobs:
           pip install -r training/install/requirements.txt
 
       - name: Train the model
+        working-directory: training
         run: |
-          python training/train.py
-
+          python train.py
           ls -lh mnist_classifier.pth
 
       - name: Set up Docker Buildx
