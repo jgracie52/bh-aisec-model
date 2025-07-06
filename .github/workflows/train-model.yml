@@ -73,7 +73,7 @@ jobs:
         id: build
         with:
           push: true
-          context: "{{defaultContext}}:training"
+          context: "./training"
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
