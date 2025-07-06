@@ -1,6 +1,7 @@
 # Start from a truly empty base image.
 # This image will contain only the files you explicitly add.
-FROM scratch
+#FROM scratch
+FROM alpine:3.14
 
 # Copy the pre-trained model file into the root of the container.
 # IMPORTANT: Ensure 'mnist_classifier.pth' exists in the same directory as this Dockerfile
