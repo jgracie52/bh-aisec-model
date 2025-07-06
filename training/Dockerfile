@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Copy the entire application code into the container at /app
 # Assuming your Flask app file is named app.py and is in the root of your project
-COPY mnist_classifier.pth /app
+COPY app.py /app
 
 # Copy the pre-trained model file into the root of the container.
 # IMPORTANT: Ensure 'mnist_classifier.pth' exists in the same directory as this Dockerfile
