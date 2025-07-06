@@ -27,22 +27,20 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v2.3.4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
+      # - name: Setup Python
+      #   uses: actions/setup-python@v5
+      #   with:
+      #     python-version: "3.10"
 
-      - name: Install dependencies
-        run: |
-          # TODO: use --require-hashes
-          pip install -r training/install/requirements.txt
+      # - name: Install dependencies
+      #   run: |
+      #     # TODO: use --require-hashes
+      #     pip install -r training/install/requirements.txt
 
       - name: Train the model
-        working-directory: training
         run: |
-          #python train.py
-          #echo "working dir: $(pwd)"
-          #tree
+          #python training/train.py
+          echo "working dir: $(pwd)"
           echo hello > mnist_classifier.pth
           tree
 
@@ -70,7 +68,7 @@ jobs:
         id: build
         with:
           push: true
-          context: "{{defaultContext}}:training"
+          context: "{{defaultContext}}"
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
