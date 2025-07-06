@@ -1,12 +1,15 @@
 # Start from a truly empty base image.
 # This image will contain only the files you explicitly add.
+# Does not work on GiHub workflow, so using alpine instead.
 #FROM scratch
 FROM alpine:3.14
+
+WORKDIR /app
 
 # Copy the pre-trained model file into the root of the container.
 # IMPORTANT: Ensure 'mnist_classifier.pth' exists in the same directory as this Dockerfile
 # when you build the image.
-COPY mnist_classifier.pth /mnist_classifier.pth
+COPY mnist_classifier.pth /app
 
 # You cannot run commands like 'ls' or 'cat' in a scratch image
 # unless you explicitly copy the binaries for those commands.
