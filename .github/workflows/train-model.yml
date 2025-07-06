@@ -38,16 +38,16 @@ jobs:
       #     pip install -r training/install/requirements.txt
 
       - name: Train the model
+        working-directory: training
         run: |
-          #python training/train.py
-          #echo "working dir: $(pwd)"
-          #tree
+          #python train.py
+          echo "working dir: $(pwd)"
           echo hello > mnist_classifier.pth
           tree
 
       - name: Validation
         run: |
-          cat mnist_classifier.pth
+          cat training/mnist_classifier.pth
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@dc7b9719a96d48369863986a06765841d7ea23f6 # v2.0.0
@@ -73,6 +73,7 @@ jobs:
         id: build
         with:
           push: true
+          context: "{{defaultContext}}:training"
           file: training/Dockerfile
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
