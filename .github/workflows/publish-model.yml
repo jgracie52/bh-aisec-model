@@ -1,0 +1,47 @@
+name: Publish image
+
+on:
+  workflow_dispatch:
+    inputs:
+      image:
+        description: "The OCI image name. This must not include a tag or digest."
+        type: string
+        default: "docker.io/lmrs2/bh-aisec-model-inferrence"
+      digest:
+        description: "The OCI image digest. The image digest of the form '<algorithm>:<digest>' (e.g. 'sha256:abcdef...')"
+        type: string
+        default: "sha256:12f69256c39dc5d6933d9d1c9cceb9242acd3db2cc00228732e5cd21d2b0327e"
+      environment:
+        type: choice
+        description: Environment to use
+        options: 
+        - prod
+        - staging
+
+permissions: read-all
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  IMAGE_REGISTRY: docker.io
+  IMAGE_NAME: ${{ github.repository }}-inferrence
+
+jobs:
+  publish:
+    permissions:
+      id-token: write # for creating OIDC tokens for signing.
+      packages: write # for uploading attestations.
+      contents: read # To read the repo.
+    uses: lmrs2/bh-aisec-organization/.github/workflows/image-publisher.yml@main
+    with:
+      environment: ${{ inputs.environment }}
+      image: ${{ inputs.image }}
+      digest: ${{ inputs.digest }}
+      # Use name rather than env variable because env are not available for reusable workflows.
+      registry-username: lmrs2
+      #registry-username: ${{ github.actor }}
+    secrets:
+      registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+      #registry-password: ${{ secrets.GITHUB_TOKEN }}
