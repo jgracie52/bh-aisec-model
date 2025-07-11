@@ -6,7 +6,7 @@ on:
       image:
         description: "The OCI image name. This must not include a tag or digest."
         type: string
-        default: "docker.io/lmrs2/bh-aisec-model-inferrence"
+        default: "docker.io/lmrs2/bh-aisec-model-inference"
       digest:
         description: "The OCI image digest. The image digest of the form '<algorithm>:<digest>' (e.g. 'sha256:abcdef...')"
         type: string
@@ -26,7 +26,7 @@ defaults:
 
 env:
   IMAGE_REGISTRY: docker.io
-  IMAGE_NAME: ${{ github.repository }}-inferrence
+  IMAGE_NAME: ${{ github.repository }}-inference
 
 jobs:
   publish:

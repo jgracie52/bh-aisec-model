@@ -11,7 +11,7 @@ defaults:
 
 env:
   IMAGE_REGISTRY: docker.io
-  IMAGE_NAME: ${{ github.event.repository.name }}-inferrence
+  IMAGE_NAME: ${{ github.event.repository.name }}-inference
   REGISTRY_USERNAME: lmrs2
 
 jobs:
