@@ -12,7 +12,7 @@ defaults:
 env:
   IMAGE_REGISTRY: docker.io
   IMAGE_NAME: ${{ github.event.repository.name }}-inference
-  REGISTRY_USERNAME: lmrs2
+  REGISTRY_USERNAME: jpgracie
 
 jobs:
   build:
@@ -89,7 +89,7 @@ jobs:
       image: ${{ needs.build.outputs.image }}
       digest: ${{ needs.build.outputs.digest }}
       # Use name rather than env variable because env are not available for reusable workflows.
-      registry-username: lmrs2
+      registry-username: jpgracie
       #registry-username: ${{ github.actor }}
     secrets:
       registry-password: ${{ secrets.REGISTRY_PASSWORD }}
